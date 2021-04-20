@@ -1,0 +1,1 @@
+const signature = $('#signature');

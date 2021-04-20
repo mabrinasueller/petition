@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: darksalmon;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+canvas {
+    width: 600px;
+    height: 80px;
+    border: 2px dotted black;
+}
+
+.hidden {
+    color: red;
+    font-style: italic;
+}
