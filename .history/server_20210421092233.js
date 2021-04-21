@@ -1,12 +1,10 @@
 const express = require('express');
+const { petition, getNames } = require('./db');
 const app = express();
-//gets the modules from db.js
-const db = require('./db');
-//gets handlebars
+
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());
 app.set('view engine', 'handlebars');
-//gets cookie parser
 const cp = require('cookie-parser');
 app.use(cp());
 //let bodyParser = require('body-parser');

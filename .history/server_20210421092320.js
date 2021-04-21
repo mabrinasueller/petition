@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 //gets the modules from db.js
-const db = require('./db');
+const { petition, getNames } = require('./db');
 //gets handlebars
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());

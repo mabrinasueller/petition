@@ -1,6 +1,6 @@
 const canvas = $('canvas');
 const ctx = canvas.getContext('2d');
-//const canvasElem = canvas.get(0);
+const canvasElem = canvas.get(0);
 let inputField = $('#signature');
 let isDrawing = false;
 
@@ -10,16 +10,18 @@ canvas.on('mousedown', (e) => {
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
     ctx.beginPath();
-    ctx.moveTo(e.clientX - canvas.offsetLeft, event.clientY - canvas.offSetTop);
+    ctx.moveTo(
+        e.clientX - canvasElem.offsetLeft,
+        event.clientY - canvasElem.offSetTop
+    );
     event.preventDefault();
 });
 
 canvas.on('mousemoves', (e) => {
-    console.log('Mousemove happening');
     if (isDrawing) {
         ctx.lineTo(
-            e.clientX - canvas.offsetLeft,
-            event.clientY - canvas.offSetTop
+            e.clientX - canvasElem.offsetLeft,
+            event.clientY - canvasElem.offSetTop
         );
         ctx.stroke();
     }

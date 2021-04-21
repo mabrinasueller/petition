@@ -15,7 +15,6 @@ canvas.on('mousedown', (e) => {
 });
 
 canvas.on('mousemoves', (e) => {
-    console.log('Mousemove happening');
     if (isDrawing) {
         ctx.lineTo(
             e.clientX - canvas.offsetLeft,
