@@ -2,13 +2,10 @@ const express = require('express');
 const app = express();
 //gets the modules from db.js
 const { petition, getNames } = require('./db');
-//gets express.handlebars
+//gets handlebars
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());
 app.set('view engine', 'handlebars');
-
-const cp = require('cookie-parser');
-app.use(cp());
 
 const cookieSession = require('cookie-session');
 const { COOKIE_SECRET } = require('./secrets.json');
@@ -47,8 +44,7 @@ app.post('/petition', (req, res) => {
             res.redirect('/thanks');
         })
         .catch((error) => {
-            console.log('Error was thrown: ', error);
-            //.toggleClass('hidden');
+            console.log('Error was thrown: ', error).toggleClass('hidden');
         });
 });
 

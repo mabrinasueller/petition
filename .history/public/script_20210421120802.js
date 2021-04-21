@@ -13,7 +13,7 @@ canvas.on('mousedown', (e) => {
     ctx.beginPath();
     ctx.moveTo(
         e.clientX - canvas[0].offsetLeft,
-        e.clientY - canvas[0].offSetTop
+        external.clientY - canvas[0].offSetTop
     );
     event.preventDefault();
 });

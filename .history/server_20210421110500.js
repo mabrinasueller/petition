@@ -2,17 +2,17 @@ const express = require('express');
 const app = express();
 //gets the modules from db.js
 const { petition, getNames } = require('./db');
-//gets express.handlebars
+//gets handlebars
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());
 app.set('view engine', 'handlebars');
-
-const cp = require('cookie-parser');
-app.use(cp());
-
+//gets cookie parser
+// const cp = require('cookie-parser');
+// app.use(cp());
 const cookieSession = require('cookie-session');
-const { COOKIE_SECRET } = require('./secrets.json');
+//let bodyParser = require('body-parser');
 
+//console.log('db: ', db);
 app.use(express.urlencoded({ extended: false }));
 app.use(
     cookieSession({
@@ -20,6 +20,16 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24 * 14,
     })
 );
+
+const { COOKIE_SECRET } = require('./secrets.json');
+
+// app.get((req, res, next) => {
+//     if (req.cookies.signedPetition != true) {
+//         res.redirect('/petition');
+//     } else {
+//         next();
+//     }
+// });
 
 app.use(express.static('public'));
 
@@ -47,8 +57,7 @@ app.post('/petition', (req, res) => {
             res.redirect('/thanks');
         })
         .catch((error) => {
-            console.log('Error was thrown: ', error);
-            //.toggleClass('hidden');
+            console.log('Error was thrown: ', error).toggleClass('hidden');
         });
 });
 
@@ -66,25 +75,13 @@ app.get('/signers', (req, res) => {
     if (req.cookies.signedPetition != true) {
         res.redirect('/petition');
     }
-    getNames()
-        .then(() => {
-            res.render('signers', {
-                layout: 'main',
-                signers: firstName,
-                lastName,
-            });
-        })
-        .catch((error) => {
-            console.log('Error was thrown: ', error);
+    getNames().then(() => {
+        res.render('signers', {
+            layout: 'main',
+            signers: firstName,
+            lastName,
         });
+    });
 });
 
 app.listen(8080, () => console.log('Server is listening'));
-
-// app.get((req, res, next) => {
-//     if (req.cookies.signedPetition != true) {
-//         res.redirect('/petition');
-//     } else {
-//         next();
-//     }
-// });

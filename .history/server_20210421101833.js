@@ -2,24 +2,25 @@ const express = require('express');
 const app = express();
 //gets the modules from db.js
 const { petition, getNames } = require('./db');
-//gets express.handlebars
+//gets handlebars
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());
 app.set('view engine', 'handlebars');
-
+//gets cookie parser
 const cp = require('cookie-parser');
 app.use(cp());
+//let bodyParser = require('body-parser');
 
-const cookieSession = require('cookie-session');
-const { COOKIE_SECRET } = require('./secrets.json');
-
+//console.log('db: ', db);
 app.use(express.urlencoded({ extended: false }));
-app.use(
-    cookieSession({
-        secret: COOKIE_SECRET,
-        maxAge: 1000 * 60 * 60 * 24 * 14,
-    })
-);
+
+// app.get((req, res, next) => {
+//     if (req.cookies.signedPetition != true) {
+//         res.redirect('/petition');
+//     } else {
+//         next();
+//     }
+// });
 
 app.use(express.static('public'));
 
@@ -41,15 +42,9 @@ app.get('/petition', (req, res) => {
 app.post('/petition', (req, res) => {
     //console.log('Post request made');
     const { firstname: firstName, lastname: lastName, signature } = req.body;
-    petition(firstName, lastName, signature)
-        .then(() => {
-            res.cookies('signedPetition', 'true');
-            res.redirect('/thanks');
-        })
-        .catch((error) => {
-            console.log('Error was thrown: ', error);
-            //.toggleClass('hidden');
-        });
+    petition(firstName, lastName, signature);
+    res.cookies('signedPetition', 'true');
+    res.redirect('/thanks');
 });
 
 app.get('/thanks', (req, res) => {
@@ -66,25 +61,12 @@ app.get('/signers', (req, res) => {
     if (req.cookies.signedPetition != true) {
         res.redirect('/petition');
     }
-    getNames()
-        .then(() => {
-            res.render('signers', {
-                layout: 'main',
-                signers: firstName,
-                lastName,
-            });
-        })
-        .catch((error) => {
-            console.log('Error was thrown: ', error);
-        });
+    getNames();
+    res.render('signers', {
+        layout: 'main',
+        signers: firstName,
+        lastName,
+    });
 });
 
 app.listen(8080, () => console.log('Server is listening'));
-
-// app.get((req, res, next) => {
-//     if (req.cookies.signedPetition != true) {
-//         res.redirect('/petition');
-//     } else {
-//         next();
-//     }
-// });

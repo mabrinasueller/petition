@@ -1,30 +1,25 @@
-const canvas = $('#canvas-signature');
-console.log(canvas);
-const ctx = canvas[0].getContext('2d');
+const canvas = $('canvas');
+const ctx = canvas.getContext('2d');
 
 let inputField = $('#signature');
 let isDrawing = false;
 
 canvas.on('mousedown', (e) => {
-    console.log('Mousedown happening');
+    console.log('Mousedown happening', e.target.value);
     isDrawing = true;
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
     ctx.beginPath();
-    ctx.moveTo(
-        e.clientX - canvas[0].offsetLeft,
-        e.clientY - canvas[0].offSetTop
-    );
+    ctx.moveTo(e.clientX - canvas.offsetLeft, event.clientY - canvas.offSetTop);
     event.preventDefault();
 });
 
-canvas.on('mousemove', (e) => {
+canvas.on('mousemoves', (e) => {
     console.log('Mousemove happening');
     if (isDrawing) {
-        console.log(e.clientX - canvas[0].offsetLeft);
         ctx.lineTo(
-            e.clientX - canvas[0].offsetLeft,
-            e.clientY - canvas[0].offSetTop
+            e.clientX - canvas.offsetLeft,
+            event.clientY - canvas.offSetTop
         );
         ctx.stroke();
     }

@@ -13,7 +13,7 @@ canvas.on('mousedown', (e) => {
     ctx.beginPath();
     ctx.moveTo(
         e.clientX - canvas[0].offsetLeft,
-        e.clientY - canvas[0].offSetTop
+        event.clientY - canvas[0].offSetTop
     );
     event.preventDefault();
 });
@@ -24,7 +24,7 @@ canvas.on('mousemove', (e) => {
         console.log(e.clientX - canvas[0].offsetLeft);
         ctx.lineTo(
             e.clientX - canvas[0].offsetLeft,
-            e.clientY - canvas[0].offSetTop
+            event.clientY - canvas[0].offSetTop
         );
         ctx.stroke();
     }
