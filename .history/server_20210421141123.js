@@ -17,11 +17,6 @@ app.use(cp());
 app.use(express.urlencoded({ extended: false }));
 //app.use(csurf());
 
-// app.use(function (req, res, next) {
-//     res.locals.csrfToken = req.csrfToken();
-//     next();
-// });
-
 // app.use(
 //     cookieSession({
 //         secret: COOKIE_SECRET,
@@ -75,15 +70,15 @@ app.get('/thanks', (req, res) => {
 });
 
 app.get('/signers', (req, res) => {
-    if (!req.cookies.signedPetition) {
+    if (req.cookies.signedPetition != true) {
         res.redirect('/petition');
     }
     getNames()
-        .then((signers) => {
-            console.log(signers.rows);
+        .then(() => {
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                signers: firstName,
+                lastName,
             });
         })
         .catch((error) => {

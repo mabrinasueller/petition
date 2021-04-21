@@ -79,11 +79,11 @@ app.get('/signers', (req, res) => {
         res.redirect('/petition');
     }
     getNames()
-        .then((signers) => {
-            console.log(signers.rows);
+        .then(() => {
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                signers: firstName,
+                lastName,
             });
         })
         .catch((error) => {

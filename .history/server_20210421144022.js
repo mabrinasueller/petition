@@ -83,7 +83,7 @@ app.get('/signers', (req, res) => {
             console.log(signers.rows);
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                signers: signer.rows,
             });
         })
         .catch((error) => {

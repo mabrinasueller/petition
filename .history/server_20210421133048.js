@@ -10,24 +10,16 @@ app.set('view engine', 'handlebars');
 const cp = require('cookie-parser');
 app.use(cp());
 
-// const cookieSession = require('cookie-session');
-//const csurf = require('csurf');
-// const { COOKIE_SECRET } = require('./secrets.json');
+const cookieSession = require('cookie-session');
+const { COOKIE_SECRET } = require('./secrets.json');
 
 app.use(express.urlencoded({ extended: false }));
-//app.use(csurf());
-
-// app.use(function (req, res, next) {
-//     res.locals.csrfToken = req.csrfToken();
-//     next();
-// });
-
-// app.use(
-//     cookieSession({
-//         secret: COOKIE_SECRET,
-//         maxAge: 1000 * 60 * 60 * 24 * 14,
-//     })
-// );
+app.use(
+    cookieSession({
+        secret: COOKIE_SECRET,
+        maxAge: 1000 * 60 * 60 * 24 * 14,
+    })
+);
 
 app.use(express.static('public'));
 
@@ -49,10 +41,9 @@ app.get('/petition', (req, res) => {
 app.post('/petition', (req, res) => {
     console.log('Post request made');
     const { firstname: firstName, lastname: lastName, signature } = req.body;
-
     petition(firstName, lastName, signature)
         .then(() => {
-            res.cookie('signedPetition', 'true');
+            res.cookies('signedPetition', 'true');
             res.redirect('/thanks');
         })
         .catch((error) => {
@@ -65,7 +56,7 @@ app.post('/petition', (req, res) => {
 });
 
 app.get('/thanks', (req, res) => {
-    if (!req.cookies.signedPetition) {
+    if (req.cookies.signedPetition != true) {
         res.redirect('/petition');
     } else {
         res.render('thanks', {
@@ -75,15 +66,15 @@ app.get('/thanks', (req, res) => {
 });
 
 app.get('/signers', (req, res) => {
-    if (!req.cookies.signedPetition) {
+    if (req.cookies.signedPetition != true) {
         res.redirect('/petition');
     }
     getNames()
-        .then((signers) => {
-            console.log(signers.rows);
+        .then(() => {
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                signers: firstName,
+                lastName,
             });
         })
         .catch((error) => {
@@ -92,3 +83,11 @@ app.get('/signers', (req, res) => {
 });
 
 app.listen(8080, () => console.log('Server is listening'));
+
+// app.get((req, res, next) => {
+//     if (req.cookies.signedPetition != true) {
+//         res.redirect('/petition');
+//     } else {
+//         next();
+//     }
+// });

@@ -11,7 +11,10 @@ canvas.on('mousedown', (e) => {
     ctx.lineWidth = 1;
     ctx.strokeStyle = 'black';
     ctx.beginPath();
-    ctx.moveTo(e.pageX - canvas.offset().left, e.pageY - canvas.offset().top);
+    ctx.moveTo(
+        e.pageX - canvas[0].offset().left,
+        e.pageY - canvas[0].offset().top
+    );
     event.preventDefault();
 });
 
@@ -19,8 +22,8 @@ canvas.on('mousemove', (e) => {
     console.log('Mousemove happening');
     if (isDrawing) {
         ctx.lineTo(
-            e.pageX - canvas.offset().left,
-            e.pageY - canvas.offset().top
+            e.pageX - canvas[0].offset().left,
+            e.pageY - canvas[0].offset().top
         );
         ctx.stroke();
     }

@@ -75,15 +75,15 @@ app.get('/thanks', (req, res) => {
 });
 
 app.get('/signers', (req, res) => {
-    if (!req.cookies.signedPetition) {
+    if (req.cookies.signedPetition != true) {
         res.redirect('/petition');
     }
     getNames()
-        .then((signers) => {
-            console.log(signers.rows);
+        .then(() => {
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                signers: firstName,
+                lastName,
             });
         })
         .catch((error) => {

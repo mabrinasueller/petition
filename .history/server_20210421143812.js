@@ -80,10 +80,9 @@ app.get('/signers', (req, res) => {
     }
     getNames()
         .then((signers) => {
-            console.log(signers.rows);
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                // signers:
             });
         })
         .catch((error) => {
