@@ -13,9 +13,12 @@
         <label for="lastname">Last Name</label>
 </div>
 
-
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-  
+<form method="POST" action="/login">
+   <input type="email" name="email">
+   <input type="password" name="pass">
+   <input type="hidden" name="_csrf" value="{{csrfToken}}">
+   <button>Submit</button>
+</form>
 
 
     <input type="hidden" name="signature" id="signature" required>

@@ -48,12 +48,11 @@ app.get('/petition', (req, res) => {
 app.post('/petition', (req, res) => {
     console.log('Post request made');
     const { firstname: firstName, lastname: lastName, signature } = req.body;
-    console.log(signature);
+
     petition(firstName, lastName, signature)
         .then((signers) => {
-            console.log(signers);
-            const { id } = signers.rows[0];
-            req.session.signatureId = id;
+            const { id } = signers.rows;
+            res.session.signatureId = id;
             res.redirect('/thanks');
         })
         .catch((error) => {
@@ -69,11 +68,9 @@ app.get('/thanks', (req, res) => {
     if (!req.session.signatureId) {
         res.redirect('/petition');
     }
-    console.log('Error');
     getSignature(req.session.signatureId)
         .then((signers) => {
-            console.log(signers);
-            const { signature } = signers.rows[0];
+            const { signature } = signers.rows;
             res.render('thanks', {
                 layout: 'main',
                 signature: signature,

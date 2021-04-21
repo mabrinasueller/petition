@@ -48,12 +48,10 @@ app.get('/petition', (req, res) => {
 app.post('/petition', (req, res) => {
     console.log('Post request made');
     const { firstname: firstName, lastname: lastName, signature } = req.body;
-    console.log(signature);
+
     petition(firstName, lastName, signature)
-        .then((signers) => {
-            console.log(signers);
-            const { id } = signers.rows[0];
-            req.session.signatureId = id;
+        .then((sigs) => {
+            res.session.signatureId = id;
             res.redirect('/thanks');
         })
         .catch((error) => {
@@ -68,20 +66,18 @@ app.post('/petition', (req, res) => {
 app.get('/thanks', (req, res) => {
     if (!req.session.signatureId) {
         res.redirect('/petition');
-    }
-    console.log('Error');
-    getSignature(req.session.signatureId)
-        .then((signers) => {
-            console.log(signers);
-            const { signature } = signers.rows[0];
-            res.render('thanks', {
-                layout: 'main',
-                signature: signature,
+    } else {
+        getSignature(req.session.signatureId)
+            .then((signature) => {
+                res.render('thanks', {
+                    layout: 'main',
+                    signature: signature,
+                });
+            })
+            .catch((error) => {
+                console.log('Error was thrown: ', error);
             });
-        })
-        .catch((error) => {
-            console.log('Error was thrown: ', error);
-        });
+    }
 });
 
 app.get('/signers', (req, res) => {

@@ -73,7 +73,7 @@ app.get('/thanks', (req, res) => {
     getSignature(req.session.signatureId)
         .then((signers) => {
             console.log(signers);
-            const { signature } = signers.rows[0];
+            const { signature } = signers.rows;
             res.render('thanks', {
                 layout: 'main',
                 signature: signature,

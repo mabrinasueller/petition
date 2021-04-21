@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 //gets the modules from db.js
-const { petition, getNames, getSignature } = require('./db');
+const { petition, getNames, signature } = require('./db');
 //gets express.handlebars
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());
@@ -48,12 +48,10 @@ app.get('/petition', (req, res) => {
 app.post('/petition', (req, res) => {
     console.log('Post request made');
     const { firstname: firstName, lastname: lastName, signature } = req.body;
-    console.log(signature);
+
     petition(firstName, lastName, signature)
-        .then((signers) => {
-            console.log(signers);
-            const { id } = signers.rows[0];
-            req.session.signatureId = id;
+        .then(() => {
+            res.session.signatureId = id;
             res.redirect('/thanks');
         })
         .catch((error) => {
@@ -68,21 +66,14 @@ app.post('/petition', (req, res) => {
 app.get('/thanks', (req, res) => {
     if (!req.session.signatureId) {
         res.redirect('/petition');
-    }
-    console.log('Error');
-    getSignature(req.session.signatureId)
-        .then((signers) => {
-            console.log(signers);
-            const { signature } = signers.rows[0];
-            res.render('thanks', {
-                layout: 'main',
-                signature: signature,
-            });
-        })
-        .catch((error) => {
-            console.log('Error was thrown: ', error);
+    } else {
+        res.render('thanks', {
+            layout: 'main',
         });
+    }
 });
+
+app.get('/');
 
 app.get('/signers', (req, res) => {
     if (!req.session.signatureId) {
