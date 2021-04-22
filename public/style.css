@@ -1,20 +1,90 @@
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: darksalmon;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-canvas {
-    width: 600px;
-    height: 80px;
-    border: 2px dotted black;
+    background-color: #fffd82;
+    font-family: 'Work Sans', sans-serif;
 }
 
 .hidden {
     color: red;
     font-style: italic;
     visibility: hidden;
+}
+
+.birthday-container {
+    display: flex;
+    width: 500px;
+    height: auto;
+    margin: 50px;
+    flex-wrap: wrap;
+    left: 200px;
+}
+
+.birthday {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold 800;
+    font-size: 100px;
+    line-height: 75px;
+    align-self: center;
+    color: #ff9b71;
+    text-shadow: 1px 1px #e84855, 2px 2px #e84855, 3px 3px #e84855,
+        4px 4px #e84855, 5px 5px #e84855, 6px 6px #e84855, 7px 7px #e84855,
+        8px 8px #e84855, 9px 9px #e84855, 10px 10px #e84855, 11px 11px #e84855,
+        12px 12px #e84855, 13px 13px #e84855, 14px 14px #e84855,
+        15px 15px #e84855, 16px 16px #e84855, 17px 17px #e84855,
+        18px 18px #e84855, 19px 19px #e84855, 20px 20px #e84855;
+}
+
+.text-container {
+    margin-left: 50px;
+    line-height: 40px;
+}
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.name-input {
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    margin: 30px;
+}
+
+input {
+    height: 25px;
+    width: 200px;
+}
+
+label {
+}
+
+canvas {
+    width: 600px;
+    height: 80px;
+    border: 2px dotted black;
+    align-self: center;
+}
+
+button {
+    height: 30px;
+    width: 120px;
+    font-size: medium;
+    font-weight: bold;
+    align-self: center;
+}
+button:hover {
+    cursor: pointer;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+}
+
+footer {
+    font-weight: 300;
+}
+
+.signers-container {
 }
