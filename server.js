@@ -1,7 +1,13 @@
 const express = require('express');
 const app = express();
 //gets the modules from db.js
-const { petition, getNames, getSignature } = require('./db');
+const {
+    petition,
+    getNames,
+    getSignature,
+    insertUser,
+    registeredUser,
+} = require('./db');
 //gets express.handlebars
 const hb = require('express-handlebars');
 app.engine('handlebars', hb());
@@ -41,13 +47,68 @@ app.get('/register', (req, res) => {
     });
 });
 
-app.post("/register", (req,res) => {
-    if 
-})
+app.post('/register', (req, res) => {
+    const { firstname, lastname, email, password } = req.body;
+
+    hash(password).then((hashedPassword) => {
+        insertUser(firstname, lastname, email, hashedPassword)
+            .then((result) => {
+                console.log('insertUser: ', result.rows);
+                const { id } = result.rows[0];
+                req.session.userId = id;
+                res.redirect('/petition');
+            })
+            .catch((error) => {
+                console.log('Error was thrown: ', error);
+                res.render('register', {
+                    layout: 'main',
+                    error: true,
+                });
+            });
+    });
+});
+
 app.get('/login', (req, res) => {
     res.render('login', {
         layout: 'main',
     });
+});
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    console.log('password', password);
+    console.log('email', email);
+    console.log('req.body', req.body);
+
+    registeredUser(email)
+        .then((result) => {
+            console.log(result.rows.length);
+            if (result.rows.length === 0) {
+                res.render('login', {
+                    layout: 'main',
+                    noUser: true,
+                });
+                return;
+            }
+            compare(password, result.rows[0].password_hash).then((match) => {
+                if (match) {
+                    req.session.userId = result.rows[0].id;
+                    res.redirect('/petition');
+                } else {
+                    res.render('login', {
+                        layout: 'main',
+                        wrongPassword: true,
+                    });
+                }
+            });
+        })
+        .catch((error) => {
+            console.log('Error was thrown: ', error);
+            res.render('login', {
+                layout: 'main',
+                error: true,
+            });
+        });
 });
 
 app.get('/petition', (req, res) => {
@@ -87,6 +148,7 @@ app.get('/thanks', (req, res) => {
     getSignature(req.session.signatureId)
         .then((signers) => {
             console.log(signers);
+
             const { signature } = signers.rows[0];
             res.render('thanks', {
                 layout: 'main',
