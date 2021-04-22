@@ -76,9 +76,9 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    console.log('password', password);
-    console.log('email', email);
-    console.log('req.body', req.body);
+    // console.log('password', password);
+    // console.log('email', email);
+    // console.log('req.body', req.body);
 
     registeredUser(email)
         .then((result) => {
@@ -121,14 +121,13 @@ app.get('/petition', (req, res) => {
 });
 
 app.post('/petition', (req, res) => {
-    console.log('Post request made');
-    const { firstname: firstName, lastname: lastName, signature } = req.body;
-    console.log(signature);
-    petition(firstName, lastName, signature)
-        .then((signers) => {
-            console.log(signers);
-            const { id } = signers.rows[0];
-            req.session.signatureId = id;
+    //console.log('Post request made');
+    const { signature } = req.body;
+    const { userId } = req.session;
+
+    petition(userId, signature)
+        .then((result) => {
+            console.log(result);
             res.redirect('/thanks');
         })
         .catch((error) => {
@@ -141,15 +140,17 @@ app.post('/petition', (req, res) => {
 });
 
 app.get('/thanks', (req, res) => {
-    if (!req.session.signatureId) {
-        res.redirect('/petition');
-    }
-    console.log('Error');
-    getSignature(req.session.signatureId)
-        .then((signers) => {
-            console.log(signers);
+    getSignature(req.session.userId)
+        .then((result) => {
+            console.log('result', result);
 
-            const { signature } = signers.rows[0];
+            if (result.rows.length === 0) {
+                return res.redirect('/petition');
+            }
+
+            const { signature } = result.rows[0];
+            console.log('signature ', signature);
+
             res.render('thanks', {
                 layout: 'main',
                 signature: signature,
@@ -161,14 +162,14 @@ app.get('/thanks', (req, res) => {
 });
 
 app.get('/signers', (req, res) => {
-    if (!req.session.signatureId) {
-        res.redirect('/petition');
-    }
-    getNames()
-        .then((signers) => {
+    getNames(req.session.userId)
+        .then((result) => {
+            if (result.rows[0].length === 0) {
+                res.redirect('/petition');
+            }
             res.render('signers', {
                 layout: 'main',
-                signers: signers.rows,
+                signers: result.rows,
             });
         })
         .catch((error) => {
