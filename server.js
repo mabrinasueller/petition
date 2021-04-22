@@ -10,6 +10,7 @@ app.set('view engine', 'handlebars');
 const cookieSession = require('cookie-session');
 const { COOKIE_SECRET } = require('./secrets.json');
 const csurf = require('csurf');
+const { hash, compare } = require('./utils/bc');
 
 app.use(
     cookieSession({
@@ -30,10 +31,23 @@ app.use(function (req, res, next) {
 
 app.use(express.static('public'));
 
-//redirects the user automatically to the /petition route
 app.get('/', (req, res) => {
-    //console.log('a request to the / route was made');
-    res.redirect('/petition');
+    res.redirect('/register');
+});
+
+app.get('/register', (req, res) => {
+    res.render('register', {
+        layout: 'main',
+    });
+});
+
+app.post("/register", (req,res) => {
+    if 
+})
+app.get('/login', (req, res) => {
+    res.render('login', {
+        layout: 'main',
+    });
 });
 
 app.get('/petition', (req, res) => {
@@ -60,8 +74,8 @@ app.post('/petition', (req, res) => {
             console.log('Error was thrown: ', error);
             res.render('petition', {
                 layout: 'main',
+                error: true,
             });
-            //.toggleClass('hidden');
         });
 });
 
@@ -90,7 +104,6 @@ app.get('/signers', (req, res) => {
     }
     getNames()
         .then((signers) => {
-            //console.log(signers.rows);
             res.render('signers', {
                 layout: 'main',
                 signers: signers.rows,
