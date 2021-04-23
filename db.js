@@ -30,5 +30,7 @@ module.exports.getSignature = (userId) => {
 };
 
 module.exports.getNames = () => {
-    return db.query(`SELECT first_name, last_name FROM users`);
+    return db.query(
+        `SELECT first_name, last_name FROM users JOIN signatures ON signatures.user_id = users.id`
+    );
 };
