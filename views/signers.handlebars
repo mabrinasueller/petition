@@ -1,7 +1,5 @@
-
 {{>birthday}}
 <div class="signers-container">
-    <h1>Thanks to our signers!</h1>
     <iframe
         src="https://giphy.com/embed/xTiTnEHBh7qapyuvwQ"
         width="380"
@@ -10,7 +8,25 @@
         class="giphy-embed"
         allowFullScreen
     ></iframe>
+    {{#if fromCity}}
+    <h1>Look at our wonderful signers from {{ fromCity }}</h1>
+    {{else}}
+    <h1>Thanks to our signers!</h1>
+    {{/if}}
+
     {{#signers}}
-    <p>{{ first_name }} {{ last_name }}</p>
+    {{#if url}}
+    <a href="{{ url }}">{{ first_name }} {{ last_name }}</a>
+    {{else}}
+    {{ first_name }}{{ last_name }}
+    {{/if}}
+
+    <p>{{ age }}</p>
+    {{#unless ../fromCity}}
+    <a href="/signers/{{ city }}"
+        ><p>{{ city }}</p></a
+    >
+    {{/unless}}
+
     {{/signers}}
 </div>

@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS signatures;
-first drop table that contains foreign key (signatures)
+--first drop table that contains foreign key (signatures)
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_profiles; 
 
 CREATE TABLE users (
     id            SERIAL PRIMARY KEY,
@@ -16,4 +17,11 @@ CREATE TABLE signatures (
     user_id INTEGER NOT NULL UNIQUE REFERENCES users(id),
     signature VARCHAR NOT NULL CHECK (signature != ''),
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
+
+CREATE TABLE user_profiles(
+  id SERIAL PRIMARY KEY,
+  age INT,
+  city VARCHAR(100),
+  url VARCHAR(300),
+  user_id INT REFERENCES users(id) NOT NULL UNIQUE);

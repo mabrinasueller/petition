@@ -7,6 +7,8 @@ const {
     getSignature,
     insertUser,
     registeredUser,
+    insertProfile,
+    getNamesByCity,
 } = require('./db');
 //gets express.handlebars
 const hb = require('express-handlebars');
@@ -56,7 +58,7 @@ app.post('/register', (req, res) => {
                 console.log('insertUser: ', result.rows);
                 const { id } = result.rows[0];
                 req.session.userId = id;
-                res.redirect('/petition');
+                res.redirect('/profile');
             })
             .catch((error) => {
                 console.log('Error was thrown: ', error);
@@ -93,7 +95,7 @@ app.post('/login', (req, res) => {
             compare(password, result.rows[0].password_hash).then((match) => {
                 if (match) {
                     req.session.userId = result.rows[0].id;
-                    res.redirect('/petition');
+                    res.redirect('/profile');
                 } else {
                     res.render('login', {
                         layout: 'main',
@@ -108,6 +110,33 @@ app.post('/login', (req, res) => {
                 layout: 'main',
                 error: true,
             });
+        });
+});
+
+app.get('/profile', (req, res) => {
+    res.render('profile', {
+        layout: 'main',
+    });
+});
+
+app.post('/profile', (req, res) => {
+    const { userId } = req.session;
+    let { age, city, url } = req.body;
+
+    if (
+        url.length !== 0 &&
+        !url.startsWith('https://') &&
+        !url.startsWith('http://')
+    ) {
+        url = `http://${url}`;
+    }
+    insertProfile(userId, age, city, url)
+        .then(() => {
+            res.redirect('petition');
+        })
+        .catch((error) => {
+            console.log('error', error);
+            res.redirect('profile');
         });
 });
 
@@ -162,19 +191,48 @@ app.get('/thanks', (req, res) => {
 });
 
 app.get('/signers', (req, res) => {
-    getNames(req.session.userId)
+    getSignature(req.session.userId).then((result) => {
+        if (result.rows.length === 0) {
+            return res.redirect('petition');
+        }
+    });
+    getNames()
         .then((result) => {
-            if (result.rows[0].length === 0) {
-                res.redirect('/petition');
-            }
+            console.log(result.rows);
             res.render('signers', {
                 layout: 'main',
+
                 signers: result.rows,
             });
         })
         .catch((error) => {
             console.log('Error was thrown: ', error);
         });
+});
+
+app.get('/signers/:city', (req, res) => {
+    getSignature(req.session.userId).then((result) => {
+        if (result.rows.length === 0) {
+            return res.redirect('petition');
+        }
+    });
+    getNamesByCity(req.params.city)
+        .then((result) => {
+            res.render('signers', {
+                layout: 'main',
+                fromCity: req.params.city,
+                signer: result.rows,
+            });
+        })
+        .catch((error) => {
+            console.log('error)', error);
+        });
+});
+
+app.get('/logout', (req, res) => {
+    req.session = null;
+
+    res.redirect('login');
 });
 
 app.listen(8080, () => console.log('Server is listening'));

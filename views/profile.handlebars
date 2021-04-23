@@ -1,0 +1,18 @@
+{{>birthday}}
+{{#if error}}
+<h3>{{ error }}</h3>
+{{/if}}
+<form method="POST">
+    <h1>We would like to know more about you! (optional)</h1>
+    <label for="age">Age</label>
+    <input type="number" name="age" />
+
+    <label for="city">City</label>
+    <input type="text" name="city" />
+
+    <label for="url">Homepage</label>
+    <input type="url" placeholder="https://example.com" name="url" />
+
+    <button>Continue</button>
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+</form>
