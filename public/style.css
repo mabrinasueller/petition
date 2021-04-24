@@ -24,10 +24,16 @@ body {
     flex: 1 0 auto;
 }
 
+a {
+    text-decoration: none;
+}
+
 .hidden {
     color: red;
     font-style: italic;
 }
+
+/* birthday-logo styling */
 
 .birthday-container {
     display: flex;
@@ -86,18 +92,7 @@ body {
     justify-content: center;
 }
 
-.name-input {
-    display: flex;
-    justify-content: space-between;
-    left: 50%;
-    margin: 30px;
-}
-
-input {
-    height: 25px;
-    width: 200px;
-}
-
+/* petition page */
 canvas {
     width: 600px;
     height: 80px;
@@ -122,9 +117,9 @@ button:hover {
     flex-shrink: 0;
 }
 
-.signers-container {
-}
-
+/* .signers-container {
+} */
+/* header styling */
 header {
     position: fixed;
     height: 80px;
@@ -149,6 +144,7 @@ header li a {
     color: black;
 }
 
+/* register-site */
 .register-container {
     width: 600px;
     height: auto;
@@ -172,7 +168,7 @@ header li a {
     display: inline-block;
     position: relative;
     margin: 20px;
-    padding: 17px;
+    padding: 10px;
     font-size: 18px;
     width: 250px;
 }
@@ -180,11 +176,12 @@ header li a {
     display: inline-block;
 }
 
+/* profile-site */
 .profile-textcontainer {
     width: 700px;
     height: auto;
     margin-left: 35%;
-    margin-top: -10%;
+    margin-top: -15%;
     font-size: 25px;
 }
 
@@ -198,12 +195,14 @@ header li a {
 .profile-boxes input {
     margin: 10px;
     padding: 15px 5px 15px 0;
+    font-size: 18px;
 }
 
 button.continue {
     margin-left: 40%;
 }
 
+/* login site */
 .login-container {
     width: 300px;
     height: auto;
@@ -212,7 +211,29 @@ button.continue {
 }
 .login-container input {
     margin: 20px 20px 20px 0;
-    padding: 17px;
+    padding: 10px;
     font-size: 18px;
     width: 300px;
+}
+
+/* thanks site */
+
+.thanks-container {
+    width: 700px;
+    height: auto;
+    margin-left: 35%;
+    margin-top: -15%;
+    font-size: 25px;
+}
+
+.thanks-container a {
+    font-size: 20px;
+    margin-left: 25%;
+}
+
+.thanks-text {
+    width: 600px;
+    height: auto;
+    text-align: center;
+    margin-left: 7%;
 }

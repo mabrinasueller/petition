@@ -145,11 +145,14 @@ app.post('/profile', (req, res) => {
 });
 
 app.get('/petition', (req, res) => {
-    if (req.session.signatureId) {
+    getSignature(req.session.userId).then((result) => {
+        if (result.rows.length === 0) {
+            res.render('petition', {
+                layout: 'main',
+            });
+            return;
+        }
         return res.redirect('/thanks');
-    }
-    res.render('petition', {
-        layout: 'main',
     });
 });
 
