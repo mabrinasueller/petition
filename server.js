@@ -39,6 +39,14 @@ app.use(function (req, res, next) {
 
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+    const request = ['/profile', '/petition', '/thanks', '/signers'];
+    if (request.includes(req.url) && !req.session.userId) {
+        return res.redirect('/login');
+    }
+    next();
+});
+
 app.get('/', (req, res) => {
     res.redirect('/register');
 });
@@ -51,10 +59,8 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { firstName, lastName, email, password } = req.body;
-    console.log('req.body', req.body);
 
     hash(password).then((hashedPassword) => {
-        console.log('hashedPassword', hashedPassword);
         insertUser(firstName, lastName, email, hashedPassword)
             .then((result) => {
                 console.log('insertUser: ', result.rows);
@@ -80,13 +86,9 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    // console.log('password', password);
-    // console.log('email', email);
-    // console.log('req.body', req.body);
 
     registeredUser(email)
         .then((result) => {
-            console.log(result.rows.length);
             if (result.rows.length === 0) {
                 res.render('login', {
                     layout: 'main',
@@ -97,7 +99,7 @@ app.post('/login', (req, res) => {
             compare(password, result.rows[0].password_hash).then((match) => {
                 if (match) {
                     req.session.userId = result.rows[0].id;
-                    res.redirect('/profile');
+                    res.redirect('/petition');
                 } else {
                     res.render('login', {
                         layout: 'main',
@@ -132,7 +134,7 @@ app.post('/profile', (req, res) => {
     ) {
         url = `http://${url}`;
     }
-    insertProfile(userId, age.length !== 0 ? city : null, city, url)
+    insertProfile(userId, age.length !== 0 ? age : null, city, url)
         .then(() => {
             res.redirect('petition');
         })
@@ -152,13 +154,11 @@ app.get('/petition', (req, res) => {
 });
 
 app.post('/petition', (req, res) => {
-    //console.log('Post request made');
     const { signature } = req.body;
     const { userId } = req.session;
 
     petition(userId, signature)
-        .then((result) => {
-            console.log(result);
+        .then(() => {
             res.redirect('/thanks');
         })
         .catch((error) => {
@@ -173,14 +173,11 @@ app.post('/petition', (req, res) => {
 app.get('/thanks', (req, res) => {
     getSignature(req.session.userId)
         .then((result) => {
-            console.log('result', result);
-
             if (result.rows.length === 0) {
                 return res.redirect('/petition');
             }
 
             const { signature } = result.rows[0];
-            console.log('signature ', signature);
 
             res.render('thanks', {
                 layout: 'main',
@@ -200,10 +197,8 @@ app.get('/signers', (req, res) => {
     });
     getNames()
         .then((result) => {
-            console.log(result.rows);
             res.render('signers', {
                 layout: 'main',
-
                 signers: result.rows,
             });
         })
@@ -220,7 +215,6 @@ app.get('/signers/:city', (req, res) => {
     });
     getNamesByCity(req.params.city)
         .then((result) => {
-            console.log('result.rows: ', result.rows);
             res.render('signers', {
                 layout: 'main',
                 signers: result.rows,
@@ -234,7 +228,6 @@ app.get('/signers/:city', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.session = null;
-
     res.redirect('login');
 });
 

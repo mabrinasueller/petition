@@ -1,29 +1,42 @@
 {{>birthday}}
-
-<h1>
-    A future with not working on your birthday could be real, but for this to
-    happen we need your support. Join our campain today!
-</h1>
-
+<div class="register-container">
+    <h1>
+        A future with not working on your birthday could be real! <br />
+        But for this to happen, we need your support: <br /><br />
+        Join our campain today!
+    </h1>
+</div>
 {{#if error}}
 <h2 class="hidden">Something went wrong. Please try again</h2>
 {{/if}}
+<p>If you are already a member, please <a href="/login">log in</a>.</p>
 
 <form method="POST">
-    <label for="register-firstname">First Name</label>
-    <input type="text" name="firstName" id="register-firstname" required />
+    <div class="register-input">
+        <input
+            type="text"
+            name="firstName"
+            id="register-firstname"
+            required
+        /><br />
+        <label for="register-firstname">First Name</label><br />
+        <label for="register-lastname"
+            >Last Name
+            <input type="text" name="lastName" id="register-lastname" required
+        /></label>
 
-    <label for="register-lastname">Last Name</label>
-    <input type="text" name="lastName" id="register-lastname" required />
+        <input type="email" name="email" id="register-email" required /><br />
+        <label for="register-email">Email Address</label><br />
 
-    <label for="register-email">Email-Address</label>
-    <input type="email" name="email" id="register-email" required />
+        <input
+            type="password"
+            name="password"
+            id="register-pw"
+            required
+        /><br />
+        <label for="register-pw">Password</label><br />
 
-    <label for="register-pw">Password</label>
-    <input type="password" name="password" id="register-pw" required />
-
-    <button>Sign Up</button>
-    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        <button>Sign Up</button>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+    </div>
 </form>
-
-<p>If you are already a member, please <a href="/login">log in</a>.</p>

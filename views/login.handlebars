@@ -1,29 +1,31 @@
 {{>birthday}}
 
-<h1>Please log in.</h1>
-
 <form method="POST">
-    {{#if error}}
-    <h2 class="hidden">Something went wrong. Please try again</h2>
-    {{/if}}
-    {{#if noUser}}
-    <h4>User doesn't exist.</h4>
-    {{/if}}
+    <div class="login-container">
+        <h1>Please log in.</h1>
+        <br />
+        {{#if error}}
+        <h2 class="hidden">Something went wrong. Please try again</h2>
+        {{/if}}
+        {{#if noUser}}
+        <h4>User doesn't exist.</h4>
+        {{/if}}
 
-    {{#if wrongPassword}}
-    <h4>Sory, wrong password.</h4>
-    {{/if}}
+        {{#if wrongPassword}}
+        <h4>Sory, wrong password.</h4>
+        {{/if}}
 
-    {{#if loggedOut}}
-    <h3>You are logged out.</h3>
-    {{/if}}
+        {{#if loggedOut}}
+        <h3>You are logged out.</h3>
+        {{/if}}
 
-    <label for="email">Email-Address</label>
-    <input type="email" name="email" id="email" />
+        <label for="email">Email-Address</label>
+        <input type="email" name="email" id="email" />
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
 
-    <button>Log In</button>
-    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        <button>Log In</button>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+    </div>
 </form>

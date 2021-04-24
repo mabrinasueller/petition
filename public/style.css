@@ -4,8 +4,24 @@
 }
 
 body {
-    background-color: #fffd82;
+    /* background-color: #fffd82; */
+    background: rgb(255, 253, 130);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 253, 130, 1) 44%,
+        rgba(255, 155, 113, 1) 100%
+    );
     font-family: 'Work Sans', sans-serif;
+    margin-top: 80px;
+    padding: 30px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: rgb(56, 54, 54);
+}
+
+.content {
+    flex: 1 0 auto;
 }
 
 .hidden {
@@ -37,6 +53,30 @@ body {
         18px 18px #e84855, 19px 19px #e84855, 20px 20px #e84855;
 }
 
+.birthday-container_two {
+    display: flex;
+    width: 300px;
+    height: auto;
+    margin: -50px 50px 50px 30px;
+    flex-wrap: wrap;
+    left: 200px;
+}
+
+.birthday_two {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold 800;
+    font-size: 60px;
+    line-height: 50px;
+    align-self: center;
+    color: #ff9b71;
+    text-shadow: 1px 1px #e84855, 2px 2px #e84855, 3px 3px #e84855,
+        4px 4px #e84855, 5px 5px #e84855, 6px 6px #e84855, 7px 7px #e84855,
+        8px 8px #e84855, 9px 9px #e84855, 10px 10px #e84855, 11px 11px #e84855,
+        12px 12px #e84855, 13px 13px #e84855, 14px 14px #e84855,
+        15px 15px #e84855, 16px 16px #e84855, 17px 17px #e84855,
+        18px 18px #e84855, 19px 19px #e84855, 20px 20px #e84855;
+}
+
 .text-container {
     margin-left: 50px;
     line-height: 40px;
@@ -56,9 +96,6 @@ body {
 input {
     height: 25px;
     width: 200px;
-}
-
-label {
 }
 
 canvas {
@@ -81,19 +118,101 @@ button:hover {
     transition: all 0.3s ease 0s;
 }
 
-footer {
-    font-weight: 300;
+.footer {
+    flex-shrink: 0;
 }
 
 .signers-container {
 }
 
 header {
+    position: fixed;
+    height: 80px;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
 }
 
-a.logout {
-    margin: 20px 30px 0 20px;
+header * {
+    display: inline;
+    margin-left: auto;
+}
+
+header li {
+    margin: 20px;
+}
+
+header li a {
     text-decoration: none;
+    color: black;
+}
+
+.register-container {
+    width: 600px;
+    height: auto;
+    margin-left: 50%;
+    margin-top: -27%;
+    font-size: 20px;
+    margin-bottom: 100px;
+}
+
+.register-input {
+    width: 800px;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.register-input input {
+    display: inline-block;
+    position: relative;
+    margin: 20px;
+    padding: 17px;
+    font-size: 18px;
+    width: 250px;
+}
+.register-input label {
+    display: inline-block;
+}
+
+.profile-textcontainer {
+    width: 700px;
+    height: auto;
+    margin-left: 35%;
+    margin-top: -10%;
+    font-size: 25px;
+}
+
+.profile-boxes {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.profile-boxes input {
+    margin: 10px;
+    padding: 15px 5px 15px 0;
+}
+
+button.continue {
+    margin-left: 40%;
+}
+
+.login-container {
+    width: 300px;
+    height: auto;
+    margin-left: 57%;
+    margin-top: -27%;
+}
+.login-container input {
+    margin: 20px 20px 20px 0;
+    padding: 17px;
+    font-size: 18px;
+    width: 300px;
 }
