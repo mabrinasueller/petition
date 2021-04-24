@@ -50,10 +50,12 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
+    console.log('req.body', req.body);
 
     hash(password).then((hashedPassword) => {
-        insertUser(firstname, lastname, email, hashedPassword)
+        console.log('hashedPassword', hashedPassword);
+        insertUser(firstName, lastName, email, hashedPassword)
             .then((result) => {
                 console.log('insertUser: ', result.rows);
                 const { id } = result.rows[0];
@@ -130,7 +132,7 @@ app.post('/profile', (req, res) => {
     ) {
         url = `http://${url}`;
     }
-    insertProfile(userId, age, city, url)
+    insertProfile(userId, age.length !== 0 ? city : null, city, url)
         .then(() => {
             res.redirect('petition');
         })
@@ -193,7 +195,7 @@ app.get('/thanks', (req, res) => {
 app.get('/signers', (req, res) => {
     getSignature(req.session.userId).then((result) => {
         if (result.rows.length === 0) {
-            return res.redirect('petition');
+            return res.redirect('/petition');
         }
     });
     getNames()
@@ -213,15 +215,16 @@ app.get('/signers', (req, res) => {
 app.get('/signers/:city', (req, res) => {
     getSignature(req.session.userId).then((result) => {
         if (result.rows.length === 0) {
-            return res.redirect('petition');
+            return res.redirect('/petition');
         }
     });
     getNamesByCity(req.params.city)
         .then((result) => {
+            console.log('result.rows: ', result.rows);
             res.render('signers', {
                 layout: 'main',
+                signers: result.rows,
                 fromCity: req.params.city,
-                signer: result.rows,
             });
         })
         .catch((error) => {

@@ -17,7 +17,7 @@ body {
     display: flex;
     width: 500px;
     height: auto;
-    margin: 50px;
+    margin: 10px 50px 50px 50px;
     flex-wrap: wrap;
     left: 200px;
 }
@@ -86,4 +86,14 @@ footer {
 }
 
 .signers-container {
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+a.logout {
+    margin: 20px 30px 0 20px;
+    text-decoration: none;
 }
