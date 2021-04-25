@@ -115,10 +115,10 @@ button:hover {
 
 .footer {
     flex-shrink: 0;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
 }
 
-/* .signers-container {
-} */
 /* header styling */
 header {
     position: fixed;
@@ -146,16 +146,21 @@ header li a {
 
 /* register-site */
 .register-container {
-    width: 600px;
+    width: 500px;
     height: auto;
-    margin-left: 50%;
-    margin-top: -27%;
+    margin-left: 45%;
+    margin-top: -35%;
     font-size: 20px;
     margin-bottom: 100px;
 }
+.welcome-text {
+    width: 500px;
+    height: auto;
+    margin-top: 8%;
+}
 
 .register-input {
-    width: 800px;
+    width: 400px;
     height: auto;
     display: flex;
     justify-content: space-evenly;
@@ -165,15 +170,12 @@ header li a {
 }
 
 .register-input input {
-    display: inline-block;
-    position: relative;
     margin: 20px;
-    padding: 10px;
-    font-size: 18px;
-    width: 250px;
+
+    width: 300px;
 }
 .register-input label {
-    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* profile-site */
@@ -183,6 +185,7 @@ header li a {
     margin-left: 35%;
     margin-top: -15%;
     font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .profile-boxes {
@@ -194,8 +197,6 @@ header li a {
 
 .profile-boxes input {
     margin: 10px;
-    padding: 15px 5px 15px 0;
-    font-size: 18px;
 }
 
 button.continue {
@@ -211,9 +212,10 @@ button.continue {
 }
 .login-container input {
     margin: 20px 20px 20px 0;
-    padding: 10px;
-    font-size: 18px;
     width: 300px;
+}
+.login-container label {
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* thanks site */
@@ -236,4 +238,24 @@ button.continue {
     height: auto;
     text-align: center;
     margin-left: 7%;
+}
+
+input {
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* signers site */
+.signers-container p {
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+}
+
+a,
+p {
+    font-family: 'Montserrat', sans-serif;
 }
