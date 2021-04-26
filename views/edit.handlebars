@@ -1,0 +1,51 @@
+{{>navbar }}
+{{>birthday2}}
+
+<form method="POST">
+    {{#editUser}}
+    <h2>Edit your profile</h2>
+    <div class="register-input">
+        <label for="register-firstname">First Name</label>
+        <input
+            type="text"
+            name="firstName"
+            value="{{ first_name }}"
+            id="register-firstname"
+            required
+        />
+
+        <label for="register-lastname">Last Name</label>
+        <input
+            type="text"
+            name="lastName"
+            value="{{ last_name }}"
+            id="register-lastname"
+            required
+        />
+
+        <label for="register-email">Email Address</label>
+        <input
+            type="email"
+            name="email"
+            value="{{ email }}"
+            id="register-email"
+            required
+        />
+
+        <label for="register-pw">Password</label>
+        <input type="password" name="password" id="register-pw" required />
+
+        <label for="age">Age</label>
+        <input type="number" value="{{ age }}" name="age" />
+
+        <label for="city">City</label>
+        <input type="text" value="{{ city }}" name="city" />
+
+        <label for="url">Homepage</label>
+        <input type="url" value="{{ url }}" name="url" />
+
+        <button>Update</button>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+    </div>
+    {{/editUser}}
+</form>

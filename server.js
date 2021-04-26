@@ -9,6 +9,7 @@ const {
     registeredUser,
     insertProfile,
     getNamesByCity,
+    getUser,
 } = require('./db');
 //gets express.handlebars
 const hb = require('express-handlebars');
@@ -228,6 +229,18 @@ app.get('/signers/:city', (req, res) => {
             console.log('error)', error);
         });
 });
+
+app.get('/profile/edit', (req, res) => {
+    getUser(req.session.userId).then((result) => {
+        console.log(result.rows);
+        res.render('edit', {
+            layout: 'main',
+            editUser: result.rows,
+        });
+    });
+});
+
+app.post('/profile/edit', (req, res));
 
 app.get('/logout', (req, res) => {
     req.session = null;

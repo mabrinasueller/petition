@@ -240,14 +240,6 @@ button.continue {
     margin-left: 7%;
 }
 
-input {
-    border: 0;
-    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-    padding: 10px;
-    font-size: 18px;
-    font-family: 'Montserrat', sans-serif;
-}
-
 /* signers site */
 .signers-container p {
     display: inline-block;
@@ -258,4 +250,16 @@ input {
 a,
 p {
     font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
 }

@@ -20,6 +20,32 @@ module.exports.insertProfile = (userId, age, city, url) => {
     );
 };
 
+module.exports.getUser = (userId) => {
+    return db.query(
+        `SELECT first_name, last_name, email, password_hash, age, city, url FROM users JOIN user_profiles ON user_profiles.user_id = users.id WHERE users.id = $1`,
+        [userId]
+    );
+};
+
+module.exports.updateUsers = (userId) => {
+    return db.query(
+        `UPDATE user SET first_name, last_name, email WHERE users.id = $1`,
+        [userId]
+    );
+};
+module.exports.updateUsersPw = (userId) => {
+    return db.query(
+        `UPDATE user SET first_name, last_name, email, password_hash WHERE users.id = $1`,
+        [userId]
+    );
+};
+module.exports.updateProfiles = (userId, age, city, url) => {
+    return db.query(
+        `INSERT INTO user_profiles (age, city, url) VALUES ($2, $3, $4)  `,
+        [userId, age, city, url]
+    );
+};
+
 module.exports.petition = (userId, signature) => {
     return db.query(
         `
