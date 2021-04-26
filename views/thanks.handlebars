@@ -1,13 +1,24 @@
 {{>navbar}}
 {{>birthday2}}
+
 <div class="thanks-container">
-<h1>Thank you for your support!</h1>
-<br>
-<div class="thanks-text">
-<h3>May we all enjoy our future birthdays even more!</h3>
-<br>
-</div>
-<img src="{{ signature }}" alt="Signature of the signer" class="signature" />
-<br>
-<a href="/signers">See who else signed the partition</a>
+    <h1>Thank you for your support!</h1>
+    <br />
+    <div class="thanks-text">
+        <h3>May we all enjoy our future birthdays even more!</h3>
+        <br />
+    </div>
+    <img
+        src="{{ signature }}"
+        alt="Signature of the signer"
+        class="signature"
+    />
+    <br />
+    <a href="/signers">See who else signed the partition</a>
+    <a href="/profile/edit">Edit your profile</a>
+
+    <form method="POST">
+        <button class="deleteSignature">Delete your signature</button>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+    </form>
 </div>

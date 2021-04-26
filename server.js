@@ -10,6 +10,10 @@ const {
     insertProfile,
     getNamesByCity,
     getUser,
+    updateUser,
+    updateUserPw,
+    updateProfile,
+    deleteSignature,
 } = require('./db');
 //gets express.handlebars
 const hb = require('express-handlebars');
@@ -201,6 +205,7 @@ app.get('/signers', (req, res) => {
     });
     getNames()
         .then((result) => {
+            console.log('result', result.rows);
             res.render('signers', {
                 layout: 'main',
                 signers: result.rows,
@@ -232,7 +237,7 @@ app.get('/signers/:city', (req, res) => {
 
 app.get('/profile/edit', (req, res) => {
     getUser(req.session.userId).then((result) => {
-        console.log(result.rows);
+        console.log('result', result.rows);
         res.render('edit', {
             layout: 'main',
             editUser: result.rows,
@@ -240,7 +245,34 @@ app.get('/profile/edit', (req, res) => {
     });
 });
 
-app.post('/profile/edit', (req, res));
+app.post('/profile/edit', (req, res) => {
+    const { userId } = req.session;
+    const { firstName, lastName, email, password, age, city, url } = req.body;
+    if (password.length !== 0) {
+        hash(password).then((hashedPassword) => {
+            Promise.all([
+                updateUser(firstName, lastName, email, userId),
+                updateUserPw(hashedPassword, userId),
+                updateProfile(age, city, url, userId),
+            ])
+                .then(() => res.redirect('/thanks'))
+                .catch((error) => console.log('error', error));
+        });
+    } else {
+        Promise.all([
+            updateUser(firstName, lastName, email, userId),
+            updateProfile(age, city, url, userId),
+        ])
+            .then(() => res.redirect('/profile/edit'))
+            .catch((error) => console.log('error', error));
+    }
+});
+
+app.post('/thanks', (req, res) => {
+    deleteSignature(req.session.userId)
+        .then(() => res.redirect('/petition'))
+        .catch((error) => console.log('error', error));
+});
 
 app.get('/logout', (req, res) => {
     req.session = null;

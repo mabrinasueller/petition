@@ -16,7 +16,7 @@ module.exports.registeredUser = (email) => {
 module.exports.insertProfile = (userId, age, city, url) => {
     return db.query(
         `INSERT INTO user_profiles (user_id, age, city, url) VALUES ($1, $2, $3, $4) RETURNING id`,
-        [userId, age, city, url]
+        [userId, age || null, city, url]
     );
 };
 
@@ -27,22 +27,22 @@ module.exports.getUser = (userId) => {
     );
 };
 
-module.exports.updateUsers = (userId) => {
+module.exports.updateUser = (firstName, lastName, email, userId) => {
     return db.query(
-        `UPDATE user SET first_name, last_name, email WHERE users.id = $1`,
-        [userId]
+        `UPDATE users SET first_name = $1, last_name = $2, email = $3 WHERE id = $4`,
+        [firstName, lastName, email, userId]
     );
 };
-module.exports.updateUsersPw = (userId) => {
-    return db.query(
-        `UPDATE user SET first_name, last_name, email, password_hash WHERE users.id = $1`,
-        [userId]
-    );
+module.exports.updateUserPw = (password, userId) => {
+    return db.query(`UPDATE users SET password_hash = $1 WHERE id = $2`, [
+        password,
+        userId,
+    ]);
 };
-module.exports.updateProfiles = (userId, age, city, url) => {
+module.exports.updateProfile = (age, city, url, userId) => {
     return db.query(
-        `INSERT INTO user_profiles (age, city, url) VALUES ($2, $3, $4)  `,
-        [userId, age, city, url]
+        `INSERT INTO user_profiles (age, city, url, user_Id) VALUES ($1, $2, $3, $4) ON CONFLICT (user_Id) DO UPDATE SET age = $1, city = $2, url = $3`,
+        [age, city, url, userId]
     );
 };
 
@@ -60,6 +60,10 @@ module.exports.getSignature = (userId) => {
     return db.query(`SELECT signature FROM signatures WHERE user_id = $1`, [
         userId,
     ]);
+};
+
+module.exports.deleteSignature = (userId) => {
+    return db.query(`DELETE FROM signatures WHERE user_id = $1`, [userId]);
 };
 
 module.exports.getNames = () => {

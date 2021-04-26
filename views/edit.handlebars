@@ -3,6 +3,12 @@
 
 <form method="POST">
     {{#editUser}}
+    {{#if profileUpdated}}
+    <h3>Your profile has been updated</h3>
+    {{/if}}
+    {{#if error}}
+    <h3>{{ error }}</h3>
+    {{/if}}
     <h2>Edit your profile</h2>
     <div class="register-input">
         <label for="register-firstname">First Name</label>
@@ -11,7 +17,6 @@
             name="firstName"
             value="{{ first_name }}"
             id="register-firstname"
-            required
         />
 
         <label for="register-lastname">Last Name</label>
@@ -20,7 +25,6 @@
             name="lastName"
             value="{{ last_name }}"
             id="register-lastname"
-            required
         />
 
         <label for="register-email">Email Address</label>
@@ -29,11 +33,10 @@
             name="email"
             value="{{ email }}"
             id="register-email"
-            required
         />
 
         <label for="register-pw">Password</label>
-        <input type="password" name="password" id="register-pw" required />
+        <input type="password" name="password" id="register-pw" />
 
         <label for="age">Age</label>
         <input type="number" value="{{ age }}" name="age" />
@@ -43,9 +46,10 @@
 
         <label for="url">Homepage</label>
         <input type="url" value="{{ url }}" name="url" />
+        {{/editUser}}
 
         <button>Update</button>
+
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
     </div>
-    {{/editUser}}
 </form>
