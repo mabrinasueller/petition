@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+module.exports.app = app;
 //gets the modules from db.js
 const {
     petition,
@@ -39,15 +40,28 @@ app.use(csurf());
 app.use(function (req, res, next) {
     res.setHeader('x-frame-options', 'deny');
     res.locals.csrfToken = req.csrfToken();
+    res.locals.fname = req.session.fname;
     next();
 });
 
 app.use(express.static('public'));
 
 app.use((req, res, next) => {
-    const request = ['/profile', '/petition', '/thanks', '/signers'];
+    const request = [
+        '/profile',
+        '/profile/edit',
+        '/petition',
+        '/thanks',
+        '/signers',
+        '/logout',
+    ];
     if (request.includes(req.url) && !req.session.userId) {
         return res.redirect('/login');
+    } else if (
+        (req.url === '/register' || req.url === '/login') &&
+        req.session.userId
+    ) {
+        return res.redirect('/petition');
     }
     next();
 });
@@ -68,9 +82,10 @@ app.post('/register', (req, res) => {
     hash(password).then((hashedPassword) => {
         insertUser(firstName, lastName, email, hashedPassword)
             .then((result) => {
-                console.log('insertUser: ', result.rows);
+                //console.log('insertUser: ', result.rows);
                 const { id } = result.rows[0];
                 req.session.userId = id;
+                req.session.fname = firstName;
                 res.redirect('/profile');
             })
             .catch((error) => {
@@ -104,6 +119,7 @@ app.post('/login', (req, res) => {
             compare(password, result.rows[0].password_hash).then((match) => {
                 if (match) {
                     req.session.userId = result.rows[0].id;
+                    req.session.fname = result.rows[0].first_name;
                     res.redirect('/petition');
                 } else {
                     res.render('login', {
@@ -279,4 +295,8 @@ app.get('/logout', (req, res) => {
     res.redirect('login');
 });
 
-app.listen(8080, () => console.log('Server is listening'));
+if (require.main == module) {
+    app.listen(process.env.PORT || 8080, () =>
+        console.log('Server is listening')
+    );
+}

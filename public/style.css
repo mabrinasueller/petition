@@ -101,12 +101,16 @@ canvas {
 }
 
 button {
-    height: 30px;
-    width: 120px;
+    height: 40px;
+    width: 140px;
     font-size: medium;
     font-weight: bold;
     align-self: center;
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
 }
+
 button:hover {
     cursor: pointer;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -116,7 +120,7 @@ button:hover {
 .footer {
     flex-shrink: 0;
     font-family: 'Montserrat', sans-serif;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 /* header styling */
@@ -144,40 +148,6 @@ header li a {
     color: black;
 }
 
-/* register-site */
-.register-container {
-    width: 500px;
-    height: auto;
-    margin-left: 45%;
-    margin-top: -35%;
-    font-size: 20px;
-    margin-bottom: 100px;
-}
-.welcome-text {
-    width: 500px;
-    height: auto;
-    margin-top: 8%;
-}
-
-.register-input {
-    width: 400px;
-    height: auto;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: auto;
-}
-
-.register-input input {
-    margin: 20px;
-
-    width: 300px;
-}
-.register-input label {
-    font-family: 'Montserrat', sans-serif;
-}
-
 /* profile-site */
 .profile-textcontainer {
     width: 700px;
@@ -203,21 +173,6 @@ button.continue {
     margin-left: 40%;
 }
 
-/* login site */
-.login-container {
-    width: 300px;
-    height: auto;
-    margin-left: 57%;
-    margin-top: -27%;
-}
-.login-container input {
-    margin: 20px 20px 20px 0;
-    width: 300px;
-}
-.login-container label {
-    font-family: 'Montserrat', sans-serif;
-}
-
 /* thanks site */
 
 .thanks-container {
@@ -238,15 +193,40 @@ button.continue {
     height: auto;
     text-align: center;
     margin-left: 7%;
+    padding-left: 30px;
+}
+
+button.deleteSignature {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    box-shadow: 0;
+    font-size: 20px;
+    width: 400px;
+    margin-left: 20%;
 }
 
 /* signers site */
-.signers-container p {
+
+.signers-container {
+    margin-left: 500px;
+}
+
+.signers-names p {
     display: inline-block;
     padding: 10px;
     font-size: 20px;
+    font-weight: bold;
+    width: 200px;
 }
 
+iframe {
+    margin-left: 60%;
+    margin-top: -15%;
+}
+
+/* general */
 a,
 p {
     font-family: 'Montserrat', sans-serif;
