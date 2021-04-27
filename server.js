@@ -22,13 +22,19 @@ app.engine('handlebars', hb());
 app.set('view engine', 'handlebars');
 
 const cookieSession = require('cookie-session');
-const { COOKIE_SECRET } = require('./secrets.json');
+let cookieSecret;
+if (process.env.COOKIE_SECRET) {
+    cookieSecret = process.env.COOKIE_SECRET;
+} else {
+    cookieSecret = require('./secrets.json').COOKIE_SECRET;
+}
+
 const csurf = require('csurf');
 const { hash, compare } = require('./utils/bc');
 
 app.use(
     cookieSession({
-        secret: COOKIE_SECRET,
+        secret: cookieSecret,
         maxAge: 1000 * 60 * 60 * 24 * 14,
     })
 );
