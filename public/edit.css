@@ -1,0 +1,8 @@
+.form-group {
+    width: 400px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    margin-top: 15px;
+}

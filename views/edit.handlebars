@@ -1,4 +1,4 @@
-{{>navbar }}
+<!-- {{!-- {{>navbar }}
 {{>birthday2}}
 
 <form method="POST">
@@ -52,4 +52,89 @@
 
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
     </div>
+</form>
+--}} -->
+
+{{>navbar }}
+{{>birthday2}}
+<form method="POST">
+    {{#editUser}}
+
+    {{#if error}}
+    <h3>{{ error }}</h3>
+    {{/if}}
+    <h2>Edit your profile</h2>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            value="{{ first_name }}"
+            id="formGroupExampleInput"
+        />
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            value="{{ last_name }}"
+            id="formGroupExampleInput2"
+        />
+    </div>
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+            type="email"
+            class="form-control"
+            name="email"
+            value="{{ email }}"
+            id="formGroupExampleInput"
+        />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="formGroupExampleInput2"
+        />
+    </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input
+            type="number"
+            class="form-control"
+            name="age"
+            value="{{ age }}"
+            id="formGroupExampleInput2"
+        />
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input
+            type="text"
+            class="form-control"
+            name="city"
+            value="{{ city }}"
+            id="formGroupExampleInput"
+        />
+    </div>
+    <div class="form-group">
+        <label for="website">Website</label>
+        <input
+            type="url"
+            class="form-control"
+            name="url"
+            value="{{ url }}"
+            id="formGroupExampleInput2"
+        />
+    </div>
+    {{/editUser}}
+    <button type="submit" class="btn btn-primary">Update</button>
+
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
 </form>

@@ -1,4 +1,4 @@
-.register-container {
+/* .register-container {
     width: 500px;
     height: auto;
     margin-left: 45%;
@@ -34,4 +34,13 @@
     margin-top: 20px;
     margin-left: 400px;
     margin-bottom: 20px;
+} */
+
+.form-group {
+    width: 400px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    margin-top: 15px;
 }
