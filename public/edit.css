@@ -1,8 +1,49 @@
-.form-group {
-    width: 400px;
-}
-
-.form-group label {
+/* .form-group label {
     margin-bottom: 6px;
     margin-top: 15px;
+}
+
+div.edit-container {
+    width: 500px;
+    height: 100%;
+    margin-left: 40%;
+    margin-top: -15%;
+}
+
+div.button-edit {
+    margin-top: 20px;
+    margin-left: 30%;
+    font-family: 'Montserrat', sans-serif;
+} */
+
+.edit-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 50px 0 0 80px;
+}
+.edit-text {
+    flex: 0;
+}
+
+.content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
+}
+
+.edit-cont {
+    flex: 1;
+    overflow-y: auto;
+    height: 350px;
+}
+
+.logo {
+    flex: 0;
+    padding-right: 80px;
+}
+
+div.button-edit {
+    margin-top: 20px;
 }

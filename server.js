@@ -227,10 +227,10 @@ app.get('/signers', (req, res) => {
     });
     getNames()
         .then((result) => {
-            console.log('result', result.rows);
             res.render('signers', {
                 layout: 'main',
                 signers: result.rows,
+                signerCount: result.rowCount,
             });
         })
         .catch((error) => {

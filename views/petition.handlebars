@@ -1,13 +1,15 @@
 {{>navbar}}
-{{>birthday}}
-<div class="text-container">
-    <h1>Sign our petition to give everone in Berlin their birthday off!</h1>
-    <h3>
-        (Don't worry: If your birthday that year is on a national holiday, you
-        will get an additional day instead)
-    </h3>
-</div>
+{{>birthday2}}
 <div class="container">
+    <div class="text-container">
+        <h2>Sign our petition to give everone in Berlin their birthday off!</h2>
+        <p>
+            (Don't worry: If your birthday that year is on a national
+            holiday,<br />
+            you will get an additional day instead)
+        </p>
+    </div>
+
     <form method="POST">
         {{#if error}}
         <h2 class="hidden">Something went wrong. Please try again</h2>
@@ -15,9 +17,9 @@
 
         <input type="hidden" name="signature" id="signature" required />
         <canvas id="canvas-signature"></canvas>
-        <p>Sign here</p>
+        <p class="sign">Sign here</p>
 
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary button3">Submit</button>
     </form>
 </div>

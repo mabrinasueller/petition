@@ -1,44 +1,48 @@
 {{>navbar}}
-{{>birthday2}}
 
-<iframe
-    src="https://giphy.com/embed/xTiTnEHBh7qapyuvwQ"
-    width="380"
-    height="302"
-    frameBorder="0"
-    class="giphy-embed"
-    allowFullScreen
-></iframe>
-<div class="signers container">
-    <div class="signers-names">
+<div class="content">
+    <div class="logo">
+        {{>birthday2}}
+    </div>
+
+    <div class="signers-container">
+        <div class="thanks-text">
+            {{#if fromCity}}
+            <h1>
+                Look at our wonderful signers <br />
+                from {{ fromCity }}
+            </h1>
+            <br />
+            {{else}}
+            <h1>Thanks to our {{ signerCount }} signers!</h1>
+            <br />
+            {{/if}}
+        </div>
+        <div class="signers-names">
+            {{#signers}}
+
+            <div class="signers-row">
+                {{#if url}}
+                <span class="margin">
+                    <a href="{{ url }}">{{ first_name }} {{ last_name }}</a>
+                </span>
+                {{else}}
+                <span class="margin">{{ first_name }} {{ last_name }}</span>
+                {{/if}}
+                <span class="margin">{{ age }}</span>
+
+                {{#unless ../fromCity}}
+                <span>
+                    <a href="/signers/{{ city }}">{{ city }}</a>
+                </span>
+
+                {{/unless}}
+            </div>
+            {{/signers}}
+        </div>
         {{#if fromCity}}
-        <h1>Look at our wonderful signers from {{ fromCity }}</h1>
-        <br />
-        {{else}}
-        <h1>Thanks to our signers!</h1>
-        <br />
-        {{/if}}
 
-        {{#signers}}
-        {{#if url}}
-        <p>
-            <a href="{{ url }}">{{ first_name }} {{ last_name }}</a>
-        </p>
-        {{else}}
-        <p>{{ first_name }} {{ last_name }}</p>
-        {{/if}}
-        <p>{{ age }}</p>
-
-        {{#unless ../fromCity}}
-        <a href="/signers/{{ city }}"
-            ><p>{{ city }}</p></a
-        ><br />
-
-        {{/unless}}
-
-        {{/signers}}
-        {{#if fromCity}}
-        <a href="/signers">Back to all signers</a>
+        <a href="/signers">>Back to all signers</a>
         {{/if}}
     </div>
 </div>

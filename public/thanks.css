@@ -1,0 +1,45 @@
+.thanks-container {
+    width: 800px;
+    height: auto;
+    margin-left: 20%;
+    margin-top: -18%;
+    font-size: 25px;
+}
+
+.thanks-container a {
+    font-size: 20px;
+    margin-left: 25%;
+}
+
+div.text-container {
+    width: 800px;
+    height: auto;
+    text-align: center;
+    margin-left: 15%;
+    margin-top: 8%;
+}
+
+img {
+    margin-left: 40%;
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+button.deleteSignature {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    box-shadow: 0;
+    font-size: 20px;
+    width: 400px;
+    margin-left: 25%;
+}
+
+a {
+    color: blue;
+}
+
+button.deleteSignature {
+    color: blue;
+}

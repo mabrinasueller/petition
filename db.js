@@ -25,7 +25,7 @@ module.exports.insertProfile = (userId, age, city, url) => {
 
 module.exports.getUser = (userId) => {
     return db.query(
-        `SELECT first_name, last_name, email, password_hash, age, city, url FROM users JOIN user_profiles ON user_profiles.user_id = users.id WHERE users.id = $1`,
+        `SELECT first_name, last_name, email, password_hash, age, city, url FROM users LEFT JOIN user_profiles ON user_profiles.user_id = users.id WHERE users.id = $1`,
         [userId]
     );
 };
@@ -71,7 +71,7 @@ module.exports.deleteSignature = (userId) => {
 
 module.exports.getNames = () => {
     return db.query(
-        `SELECT first_name, last_name, age, city, url FROM signatures INNER JOIN users ON signatures.user_id = users.id INNER JOIN user_profiles ON user_profiles.user_id = users.id`
+        `SELECT first_name, last_name, age, city, url FROM signatures INNER JOIN users ON signatures.user_id = users.id LEFT JOIN user_profiles ON user_profiles.user_id = users.id`
     );
 };
 

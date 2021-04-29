@@ -12,16 +12,19 @@ body {
         rgba(255, 155, 113, 1) 100%
     );
     font-family: 'Work Sans', sans-serif;
-    margin-top: 80px;
-    padding: 30px;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     color: rgb(56, 54, 54);
+    flex-direction: column;
 }
 
-.content {
-    flex: 1 0 auto;
+main {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    padding: 30px;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 a {
@@ -63,9 +66,8 @@ a {
     display: flex;
     width: 300px;
     height: auto;
-    margin: -50px 50px 50px 30px;
+
     flex-wrap: wrap;
-    left: 200px;
 }
 
 .birthday_two {
@@ -83,53 +85,17 @@ a {
         18px 18px #e84855, 19px 19px #e84855, 20px 20px #e84855;
 }
 
-.text-container {
-    margin-left: 50px;
-    line-height: 40px;
-}
-.container {
-    display: flex;
-    justify-content: center;
-}
-
-/* petition page */
-canvas {
-    width: 600px;
-    height: 80px;
-    border: 2px dotted black;
-    align-self: center;
-}
-
-button {
-    height: 40px;
-    width: 140px;
-    font-size: medium;
-    font-weight: bold;
-    align-self: center;
-    background-color: transparent;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 5px;
-}
-
-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-}
-
 .footer {
-    flex-shrink: 0;
+    flex: 0;
     font-family: 'Montserrat', sans-serif;
-    margin-top: 40px;
+    padding: 30px 0 10px 10px;
+    font-size: 13px;
 }
 
 /* header styling */
 header {
-    position: fixed;
+    flex: 0;
     height: 80px;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
     align-items: center;
 }
@@ -146,84 +112,6 @@ header li {
 header li a {
     text-decoration: none;
     color: black;
-}
-
-/* profile-site */
-.profile-textcontainer {
-    width: 700px;
-    height: auto;
-    margin-left: 35%;
-    margin-top: -15%;
-    font-size: 25px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.profile-boxes {
-    width: 50%;
-    height: auto;
-    margin: auto;
-    margin-top: 60px;
-}
-
-.profile-boxes input {
-    margin: 10px;
-}
-
-button.continue {
-    margin-left: 40%;
-}
-
-/* thanks site */
-
-.thanks-container {
-    width: 700px;
-    height: auto;
-    margin-left: 35%;
-    margin-top: -15%;
-    font-size: 25px;
-}
-
-.thanks-container a {
-    font-size: 20px;
-    margin-left: 25%;
-}
-
-.thanks-text {
-    width: 600px;
-    height: auto;
-    text-align: center;
-    margin-left: 7%;
-    padding-left: 30px;
-}
-
-button.deleteSignature {
-    font-family: 'Montserrat', sans-serif;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    box-shadow: 0;
-    font-size: 20px;
-    width: 400px;
-    margin-left: 20%;
-}
-
-/* signers site */
-
-.signers-container {
-    margin-left: 500px;
-}
-
-.signers-names p {
-    display: inline-block;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    width: 200px;
-}
-
-iframe {
-    margin-left: 60%;
-    margin-top: -15%;
 }
 
 .form-group {
@@ -251,4 +139,8 @@ input {
 
 input:hover {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+a:hover {
+    color: blue;
 }

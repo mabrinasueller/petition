@@ -1,0 +1,47 @@
+.signers-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 50px 0 0 100px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.header-link {
+    margin-right: 20px;
+}
+
+.content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
+}
+
+.thanks-text {
+    flex: 0;
+}
+
+.signers-names {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.signers-row * {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.logo {
+    flex: 0;
+}
+
+/* span {
+    padding-left: 20px;
+} */
+
+.margin {
+    margin-right: 40px;
+}

@@ -1,0 +1,19 @@
+.profile-textcontainer {
+    width: 500px;
+    height: auto;
+    margin-left: 40%;
+    margin-top: -15%;
+    font-size: 25px;
+}
+
+.profile-input {
+    width: 500px;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    margin-left: 45%;
+}
+
+div.button-continue {
+    margin-left: 44%;
+}

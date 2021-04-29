@@ -1,4 +1,4 @@
-{{>navbar}}
+<!-- {{>navbar}}
 {{>birthday2}}
 
 {{#if error}}
@@ -20,5 +20,53 @@
     </div>
 
     <button class="continue">Continue</button>
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+</form> -->
+
+{{>navbar}}
+{{>birthday2}}
+
+{{#if error}}
+<h3>{{ error }}</h3>
+{{/if}}
+<form method="POST">
+    <div class="profile-textcontainer">
+        <h2 class="text-center">
+            We would like to know more about you (but it's optional)!
+        </h2>
+    </div>
+    <div class="profile-input">
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input
+                type="number"
+                class="form-control"
+                name="age"
+                id="formGroupExampleInput2"
+            />
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input
+                type="text"
+                class="form-control"
+                name="city"
+                id="formGroupExampleInput"
+            />
+        </div>
+        <div class="form-group">
+            <label for="website">Website</label>
+            <input
+                type="url"
+                class="form-control"
+                name="url"
+                id="formGroupExampleInput2"
+                placeholder="https://example.com"
+            />
+        </div>
+    </div>
+    <div class="button-continue">
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </div>
     <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
 </form>

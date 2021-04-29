@@ -1,19 +1,8 @@
-/* .register-container {
+.register-container {
     width: 500px;
     height: auto;
-    margin-left: 45%;
-    margin-top: -20%;
-}
-
-.register-input {
-    width: 900px;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: auto;
-    margin-top: 60px;
+    margin-left: 55%;
+    margin-top: -45%;
 }
 
 .register-input input {
@@ -27,20 +16,58 @@
 .member {
     width: 700px;
     height: auto;
-    margin-left: 300px;
+    margin-left: 2%;
 }
-
-.register-button {
+button {
     margin-top: 20px;
-    margin-left: 400px;
+    margin-left: 30%;
     margin-bottom: 20px;
-} */
-
-.form-group {
-    width: 400px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form-group label {
     margin-bottom: 6px;
     margin-top: 15px;
 }
+
+div.text-container {
+    width: 400px;
+    margin-left: 5%;
+    margin-top: 0;
+}
+
+.logo-big {
+    margin-top: 20px;
+}
+/* .content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+
+     min-height: 0; 
+}
+
+.logo {
+    flex: 0;
+}
+
+.register-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+     padding: 50px 0 0 80px; 
+}
+
+.text-container {
+    flex: 0;
+}
+
+.register {
+    flex: 2;
+}
+header {
+    flex: 0;
+    height: 80px;
+    display: flex;
+} */

@@ -1,5 +1,6 @@
-{{>birthday2}}
-
+<div class="logo-big">
+    {{>birthday}}
+</div>
 <!-- <div class="register-container">
     <h2>
         A future with not working on your birthday could be real - <br />
@@ -10,18 +11,15 @@
 {{#if error}}
 <h2 class="hidden">Something went wrong. Please try again</h2>
 {{/if}}
-
 <form method="POST">
     <div class="register-input">
         <label for="register-firstname">First Name</label>
         <input type="text" name="firstName" id="register-firstname" required />
-
         <label for="register-lastname">Last Name </label>
         <input type="text" name="lastName" id="register-lastname" required />
         <br />
         <label for="register-email">Email Address</label>
         <input type="email" name="email" id="register-email" required />
-
         <label for="register-pw">Password</label>
         <input type="password" name="password" id="register-pw" required />
         <br />
@@ -37,59 +35,71 @@
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
     </div>
 </form> -->
+<div class="text-container text-center">
+    <h4>A future with not working on your birthday could be real -</h4>
+    <h2>Join our campain today!</h2>
 
-<form method="POST">
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input
-            type="text"
-            class="form-control"
-            name="firstName"
-            id="formGroupExampleInput"
-            placeholder="Shakira"
-            required
-        />
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input
-            type="text"
-            class="form-control"
-            name="lastName"
-            id="formGroupExampleInput2"
-            placeholder="Shakira"
-            required
-        />
-    </div>
-    <div class="form-group">
-        <label for="email">Email Address</label>
-        <input
-            type="email"
-            class="form-control"
-            name="email"
-            id="formGroupExampleInput"
-            placeholder="mail@example.com"
-            required
-        />
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2">Password</label>
-        <input
-            type="password"
-            class="form-control"
-            name="password"
-            id="formGroupExampleInput2"
-            required
-        />
-    </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-    <div class="member">
-        <p>If you are already a member, please <a href="/login">log in</a>.</p>
-    </div>
-    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-</form>
+    {{#if error}}
+    <h2 class="hidden">Something went wrong. Please try again</h2>
+    {{/if}}
+</div>
 
-<!-- <div class="register-button">
+<div class="register-container">
+    <form method="POST">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+                type="text"
+                class="form-control"
+                name="firstName"
+                id="formGroupExampleInput"
+                placeholder="Shakira"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+                type="text"
+                class="form-control"
+                name="lastName"
+                id="formGroupExampleInput2"
+                placeholder="Shakira"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="formGroupExampleInput"
+                placeholder="mail@example.com"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Password</label>
+            <input
+                type="password"
+                class="form-control"
+                name="password"
+                id="formGroupExampleInput2"
+                required
+            />
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="member">
+            <p>
+                If you are already a member, please <a href="/login">log in</a>.
+            </p>
+        </div>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+    </form>
+
+    <!-- <div class="register-button">
         <button>Sign Up</button><br />
         <br />
     </div> -->
+</div>
