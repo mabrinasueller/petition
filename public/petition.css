@@ -1,6 +1,4 @@
-canvas {
-    width: 600px;
-    height: 120px;
+/* canvas {
     border: 2px dotted black;
     align-self: center;
     margin-left: 25%;
@@ -30,4 +28,36 @@ p {
 
 p.sign {
     margin-left: 25%;
+} */
+
+.logo {
+    flex: 0;
+}
+
+.content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
+}
+
+.petition-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 40px;
+}
+
+.petition-text {
+    flex: 0;
+}
+
+.form-container {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 100px;
+}
+
+.form-container canvas {
+    border: 2px dotted black;
 }

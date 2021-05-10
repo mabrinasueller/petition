@@ -1,25 +1,39 @@
 {{>navbar}}
-{{>birthday2}}
-<div class="container">
-    <div class="text-container">
-        <h2>Sign our petition to give everone in Berlin their birthday off!</h2>
-        <p>
-            (Don't worry: If your birthday that year is on a national
-            holiday,<br />
-            you will get an additional day instead)
-        </p>
+<div class="content">
+    <div class="logo">
+        {{>birthday2}}
     </div>
+    <div class="petition-container">
+        <div class="petition-text">
+            <h2>
+                Sign our petition to give everone in Berlin their birthday off!
+            </h2>
+            <p>
+                (Don't worry: If your birthday that year is on a national
+                holiday,<br />
+                you will get an additional day instead)
+            </p>
+        </div>
+        <div class="form-container">
+            <form method="POST">
+                {{#if error}}
+                <h2 class="hidden">Something went wrong. Please try again</h2>
+                {{/if}}
 
-    <form method="POST">
-        {{#if error}}
-        <h2 class="hidden">Something went wrong. Please try again</h2>
-        {{/if}}
+                <input type="hidden" name="signature" id="signature" required />
+                <canvas
+                    id="canvas-signature"
+                    width="600"
+                    height="120"
+                    ;
+                ></canvas>
+                <p class="sign">Sign here</p>
 
-        <input type="hidden" name="signature" id="signature" required />
-        <canvas id="canvas-signature"></canvas>
-        <p class="sign">Sign here</p>
-
-        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-        <button type="submit" class="btn btn-primary button3">Submit</button>
-    </form>
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+                <button type="submit" class="btn btn-primary button3">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
