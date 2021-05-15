@@ -1,28 +1,41 @@
+.logo {
+    flex: 0;
+}
+
+.content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
+}
+
 .thanks-container {
-    width: 800px;
-    height: auto;
-    margin-left: 20%;
-    margin-top: -18%;
-    font-size: 25px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 40px;
 }
 
-.thanks-container a {
-    font-size: 20px;
-    margin-left: 25%;
+.thanks-text-container {
+    flex: 0;
+    padding: 20px 20px 10px 120px;
 }
 
-div.text-container {
-    width: 800px;
-    height: auto;
-    text-align: center;
-    margin-left: 15%;
-    margin-top: 8%;
+.signature-container {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 20px;
+}
+.signature {
+    padding-left: 200px;
 }
 
-img {
-    margin-left: 40%;
-    padding: 15px;
-    margin-bottom: 0;
+a {
+    color: blue;
+}
+
+button.deleteSignature {
+    color: blue;
 }
 
 button.deleteSignature {
@@ -32,14 +45,8 @@ button.deleteSignature {
     outline: none;
     box-shadow: 0;
     font-size: 20px;
-    width: 400px;
-    margin-left: 25%;
-}
-
-a {
-    color: blue;
-}
-
-button.deleteSignature {
-    color: blue;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    padding-left: 100px;
 }

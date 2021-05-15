@@ -1,73 +1,29 @@
-.register-container {
-    width: 500px;
-    height: auto;
-    margin-left: 55%;
-    margin-top: -45%;
-}
-
-.register-input input {
-    margin: 20px;
-    width: 300px;
-}
-.register-input label {
-    font-family: 'Montserrat', sans-serif;
-}
-
-.member {
-    width: 700px;
-    height: auto;
-    margin-left: 2%;
-}
-button {
-    margin-top: 20px;
-    margin-left: 30%;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.form-group label {
-    margin-bottom: 6px;
-    margin-top: 15px;
-}
-
-div.text-container {
-    width: 400px;
-    margin-left: 5%;
-    margin-top: 0;
-}
-
-.logo-big {
-    margin-top: 20px;
-}
-/* .content {
+.content {
     flex: 1;
     flex-direction: row;
     display: flex;
-
-     min-height: 0; 
+    min-height: 0;
 }
 
-.logo {
-    flex: 0;
+.logo-register {
+    flex: 1;
+    padding: 40px;
+    margin-right: 30px;
 }
 
+div.text-container {
+    margin-top: 30px;
+}
 .register-container {
     display: flex;
     flex: 1;
-    flex-direction: column;
-
-     padding: 50px 0 0 80px; 
+    padding-top: 50px;
+    justify-content: center;
+    align-content: center;
 }
 
-.text-container {
-    flex: 0;
-}
-
-.register {
-    flex: 2;
-}
-header {
-    flex: 0;
-    height: 80px;
+.register-button {
+    padding: 20px;
     display: flex;
-} */
+    justify-content: center;
+}

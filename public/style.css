@@ -40,11 +40,9 @@ a {
 
 .birthday-container {
     display: flex;
-    width: 500px;
+    width: 400px;
     height: auto;
-    margin: 10px 50px 50px 50px;
     flex-wrap: wrap;
-    left: 200px;
 }
 
 .birthday {

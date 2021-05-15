@@ -1,21 +1,25 @@
-.login-container {
-    width: 300px;
-    height: auto;
-    margin-left: 57%;
-    margin-top: -28%;
-}
-.login-container input {
-    width: 300px;
-    border-radius: 3px;
-}
-.login-container label {
-    font-family: 'Montserrat', sans-serif;
+.content {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    min-height: 0;
 }
 
-div.button {
-    margin-left: 3%;
-    margin-top: 10px;
+.logo-login {
+    flex: 1;
+    padding: 40px;
+    margin-right: 30px;
 }
-div.logo-big {
-    margin-top: 40px;
+.login-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-weight: 400;
 }

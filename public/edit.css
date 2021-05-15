@@ -1,28 +1,12 @@
-/* .form-group label {
-    margin-bottom: 6px;
-    margin-top: 15px;
-}
-
-div.edit-container {
-    width: 500px;
-    height: 100%;
-    margin-left: 40%;
-    margin-top: -15%;
-}
-
-div.button-edit {
-    margin-top: 20px;
-    margin-left: 30%;
-    font-family: 'Montserrat', sans-serif;
-} */
-
 .edit-container {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: 50px 0 0 80px;
+    padding-left: 150px;
+    padding-top: 50px;
+    justify-content: center;
 }
-.edit-text {
+.text-edit-container {
     flex: 0;
 }
 
@@ -33,7 +17,7 @@ div.button-edit {
     min-height: 0;
 }
 
-.edit-cont {
+.form-edit-container {
     flex: 1;
     overflow-y: auto;
     height: 350px;
@@ -41,7 +25,6 @@ div.button-edit {
 
 .logo {
     flex: 0;
-    padding-right: 80px;
 }
 
 div.button-edit {
